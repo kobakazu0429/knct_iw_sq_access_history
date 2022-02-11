@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スクエア入退室記録</title>
+    <link rel="stylesheet" href="../reset.min.css" />
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        padding: 100px;
+        column-gap: 100px;
+        text-align: center;
+        font-size: 60px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <p>自分の学生証もしくは代表学生の学生証を</p>
+        <p>バーコードリーダーで読み込んでください</p>
+        <p>入室時に使った学生証と同じにしてください。</p>
+      </div>
+      <div><input type="text" id="student-no" autofocus /></div>
+      <div><a href="./used-equipments.html" id="next-button">次へ進む</a></div>
+    </div>
+
+    <script>
+      const studentNo = document.getElementById("student-no");
+      const nextButton = document.getElementById("next-button");
+
+      studentNo.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") {
+          nextButton.click();
+        }
+      });
+    </script>
+  </body>
+</html>

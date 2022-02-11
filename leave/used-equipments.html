@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スクエア入退室記録</title>
+    <link rel="stylesheet" href="../reset.min.css" />
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 40px;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .title {
+        font-size: 60px;
+      }
+
+      .barcodes {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <p>使った機材のバーコードを</p>
+        <p>バーコードリーダーで読み込んでください</p>
+      </div>
+      <div class="barcodes">
+        <div>
+          機材1:
+          <input type="text" id="barcode1" autofocus />
+        </div>
+        <div>
+          機材2:
+          <input type="text" id="barcode2" />
+        </div>
+        <div>
+          機材3:
+          <input type="text" id="barcode3" />
+        </div>
+        <div>
+          機材4:
+          <input type="text" id="barcode4" />
+        </div>
+        <div>
+          機材5:
+          <input type="text" id="barcode5" />
+        </div>
+      </div>
+      <div>
+        <a href="./submitted.html" id="next-button">次へ進む</a>
+      </div>
+    </div>
+
+    <script>
+      const nextButton = document.getElementById("next-button");
+
+      const nextInput = (e, i) => {
+        if (e.key === "Enter") {
+          document.getElementById(`barcode${i}`).focus();
+        }
+      };
+
+      document.getElementById("barcode1").addEventListener("keyup", (e) => {
+        nextInput(e, 2);
+      });
+      document.getElementById("barcode2").addEventListener("keyup", (e) => {
+        nextInput(e, 3);
+      });
+      document.getElementById("barcode3").addEventListener("keyup", (e) => {
+        nextInput(e, 4);
+      });
+      document.getElementById("barcode4").addEventListener("keyup", (e) => {
+        nextInput(e, 5);
+      });
+      document.getElementById("barcode5").addEventListener("keyup", (e) => {
+        nextButton.click();
+      });
+    </script>
+  </body>
+</html>

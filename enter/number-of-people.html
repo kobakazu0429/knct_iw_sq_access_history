@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スクエア入退室記録</title>
+    <link rel="stylesheet" href="../reset.min.css" />
+    <link rel="stylesheet" href="../common.css" />
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr) 3fr 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        min-width: 100%;
+        min-height: 100%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 100px;
+      }
+
+      .title {
+        font-size: 60px;
+      }
+
+      .number_input {
+        font-size: 60px;
+      }
+
+      .numbers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+        font-size: 30px;
+      }
+
+      .number {
+        height: 80px;
+        border: 1px solid #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        cursor: pointer;
+      }
+
+      .number1 {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      .number2 {
+        grid-area: 1 / 2 / 2 / 3;
+      }
+      .number3 {
+        grid-area: 1 / 3 / 2 / 4;
+      }
+      .number4 {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+      .number5 {
+        grid-area: 2 / 2 / 3 / 3;
+      }
+      .number6 {
+        grid-area: 2 / 3 / 3 / 4;
+      }
+      .number7 {
+        grid-area: 3 / 1 / 4 / 2;
+      }
+      .number8 {
+        grid-area: 3 / 2 / 4 / 3;
+      }
+      .number9 {
+        grid-area: 3 / 3 / 4 / 4;
+      }
+      .number0 {
+        grid-area: 4 / 1 / 5 / 2;
+      }
+      .clear {
+        grid-area: 4 / 3 / 5 / 4;
+      }
+
+      .button_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button1 {
+        background-color: #ffffff;
+        font-size: 50px;
+        color: var(--text-color);
+        text-decoration: none;
+        border: 3px solid var(--text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .button1:hover {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">本日スクエアを利用する人数を入力してください</div>
+      <div class="number_input">
+        <input type="text" id="number-of-people" autofocus />
+      </div>
+      <div class="numbers">
+        <button class="number number1" onclick="clickNumber(1)">1</button>
+        <button class="number number2" onclick="clickNumber(2)">2</button>
+        <button class="number number3" onclick="clickNumber(3)">3</button>
+        <button class="number number4" onclick="clickNumber(4)">4</button>
+        <button class="number number5" onclick="clickNumber(5)">5</button>
+        <button class="number number6" onclick="clickNumber(6)">6</button>
+        <button class="number number7" onclick="clickNumber(7)">7</button>
+        <button class="number number8" onclick="clickNumber(8)">8</button>
+        <button class="number number9" onclick="clickNumber(9)">9</button>
+        <button class="number number0" onclick="clickNumber(0)">0</button>
+        <button class="number clear" onclick="clearNumber()">clear</button>
+      </div>
+      <div class="button_wrapper">
+        <button class="button1" onclick="submit()">送信する</button>
+      </div>
+    </div>
+    <script>
+      const numberOfPeople = document.getElementById("number-of-people");
+
+      function clickNumber(n) {
+        numberOfPeople.value += String(n);
+      }
+
+      function clearNumber() {
+        numberOfPeople.value = "";
+      }
+
+      function submit() {
+        location.href = "/enter/submitted.html";
+      }
+    </script>
+  </body>
+</html>
