@@ -38,24 +38,31 @@
       </div>
       <div><input type="text" id="student-no" autofocus /></div>
       <div>
-        <a
-          href="./used-equipments.html"
-          id="next-button"
-          class="button text-black"
-        >
-          次へ進む
-        </a>
+        <button id="next-button" class="button text-black">次へ進む</button>
       </div>
     </div>
 
-    <script>
+    <script type="module">
+      import { setStudentNo } from "../storage.js";
+      import { verifyStudentNo } from "../utils.js";
+
       const studentNo = document.getElementById("student-no");
       const nextButton = document.getElementById("next-button");
 
-      studentNo.addEventListener("keyup", (e) => {
+      const stored = async () => {
+        if (!verifyStudentNo(studentNo.value)) return;
+        await setStudentNo(studentNo.value);
+        window.location = "./used-equipments.html";
+      };
+
+      studentNo.addEventListener("keyup", async (e) => {
         if (e.key === "Enter") {
-          nextButton.click();
+          stored();
         }
+      });
+
+      nextButton.addEventListener("click", () => {
+        stored();
       });
     </script>
   </body>

@@ -89,13 +89,15 @@
         </div>
       </div>
       <div>
-        <a href="./submitted.html" id="next-button" class="button text-black"
-          >次へ進む</a
-        >
+        <button class="button text-md" id="submit">送信する</button>
       </div>
     </div>
 
-    <script>
+    <script type="module">
+      import { getStudentNo } from "../storage.js";
+      import { detailDateFormatter } from "../utils.js";
+      import { GAS_URL } from "../settings.js";
+
       const nextButton = document.getElementById("next-button");
 
       const nextInput = (e, i) => {
@@ -132,7 +134,37 @@
         nextInput(e, 10);
       });
       document.getElementById("barcode10").addEventListener("keyup", (e) => {
-        nextButton.click();
+        // nextButton.click();
+      });
+
+      document.getElementById("submit").addEventListener("click", async (e) => {
+        const s = new Set();
+        for (let i = 1; i <= 10; i++) {
+          let { value } = document.getElementById(`barcode${i}`);
+          value = value.trim();
+          if (!value || value == "") continue;
+          s.add(value);
+        }
+
+        const studentNo = await getStudentNo();
+
+        const data = {
+          type: "leave",
+          studentNo,
+          equipments: Array.from(s.values()).join(", "),
+          time: detailDateFormatter.format(new Date()),
+        };
+
+        console.log(data);
+
+        const res = await fetch(GAS_URL, {
+          method: "post",
+          body: JSON.stringify(data),
+        });
+
+        console.log(await res.json());
+
+        window.location = "./submitted.html";
       });
     </script>
   </body>

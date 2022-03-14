@@ -42,7 +42,9 @@
     <div class="container">
       <div class="info">
         <p>スクエア入退室記録</p>
-        <p>2022/02/10(木) - 現在10人います</p>
+        <p>
+          2022/02/10(木) - 現在<span id="current-students-count"></span>人います
+        </p>
       </div>
       <a
         href="./enter/index.html"
@@ -57,5 +59,30 @@
         退室
       </a>
     </div>
+    <script type="module">
+      import {
+        getStudentsCount,
+        deleteStudentNo,
+        deleteStudentsCount,
+        getLastRun,
+        updateLastRun,
+      } from "./storage.js";
+      import { simpleDateFormatter } from "./utils.js";
+
+      await deleteStudentNo();
+
+      const isFirst =
+        (await getLastRun()) !== simpleDateFormatter.format(new Date());
+
+      if (isFirst) {
+        await deleteStudentsCount();
+        await updateLastRun();
+      }
+
+      const currentStudentsCount = await getStudentsCount();
+      console.log(currentStudentsCount);
+      document.getElementById("current-students-count").textContent =
+        currentStudentsCount;
+    </script>
   </body>
 </html>

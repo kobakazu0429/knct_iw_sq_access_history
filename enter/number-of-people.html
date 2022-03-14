@@ -115,7 +115,7 @@
         <a class="button text-md text-black" href="../index.html">
           トップへ戻る
         </a>
-        <button class="button text-md" onclick="submit()">送信する</button>
+        <button class="button text-md" id="submit">送信する</button>
       </div>
     </div>
     <script>
@@ -128,27 +128,36 @@
       function clearNumber() {
         numberOfPeople.value = "";
       }
+    </script>
+    <script type="module">
+      import { addStudentsCount, getStudentNo } from "../storage.js";
+      import { detailDateFormatter } from "../utils.js";
+      import { GAS_URL } from "../settings.js";
 
-      async function submit() {
-        const url =
-          "https://script.google.com/macros/s/AKfycbzbOaEC4I8Y6Sas38dbHx5Pwn-UsxDI2aRLwS4ouzGAGIJ5oaY5-8V4KD3ulQUknSiI/exec";
+      document.getElementById("submit").addEventListener("click", async () => {
+        if (numberOfPeople.value === "" || numberOfPeople.value === "0") return;
+
+        await addStudentsCount(Number(numberOfPeople.value));
+        const studentNo = await getStudentNo();
 
         const data = {
-          no: numberOfPeople.value,
-          // name: name.value,
-          time: Date.now(),
+          type: "enter",
+          studentNo,
+          numberOfPeople: numberOfPeople.value,
+          time: detailDateFormatter.format(new Date()),
         };
 
         console.log(data);
 
-        const res = await fetch(url, {
+        const res = await fetch(GAS_URL, {
           method: "post",
           body: JSON.stringify(data),
         });
 
         console.log(await res.json());
-        location.href = "./submitted.html";
-      }
+
+        window.location = "./submitted.html";
+      });
     </script>
   </body>
 </html>
