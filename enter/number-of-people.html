@@ -93,6 +93,10 @@
     </style>
   </head>
   <body>
+    <div class="loading-container hidden">
+      <div class="loading"></div>
+    </div>
+
     <div class="container">
       <div class="title">本日スクエアを利用する人数を入力してください</div>
       <div class="number_input">
@@ -136,6 +140,10 @@
 
       document.getElementById("submit").addEventListener("click", async () => {
         if (numberOfPeople.value === "" || numberOfPeople.value === "0") return;
+
+        document
+          .querySelector("div.loading-container")
+          .classList.remove("hidden");
 
         await addStudentsCount(Number(numberOfPeople.value));
         const studentNo = await getStudentNo();
