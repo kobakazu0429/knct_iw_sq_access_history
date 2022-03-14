@@ -24,8 +24,9 @@
         font-size: 60px;
       }
 
-      a {
-        text-decoration: none;
+      .buttons {
+        display: flex;
+        justify-content: space-around;
       }
     </style>
   </head>
@@ -36,7 +37,15 @@
         <p>バーコードリーダーで読み込んでください</p>
       </div>
       <div><input type="text" id="student-no" autofocus /></div>
-      <div><a href="./number-of-people.html" id="next-button">次へ進む</a></div>
+      <div class="buttons">
+        <a href="../index.html" class="button text-black">トップへ戻る</a>
+        <a
+          href="./number-of-people.html"
+          id="next-button"
+          class="button text-black"
+          >次へ進む</a
+        >
+      </div>
     </div>
 
     <script>

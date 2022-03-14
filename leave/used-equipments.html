@@ -32,43 +32,66 @@
 
       .barcodes {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(5, 1fr);
         grid-column-gap: 0px;
         grid-row-gap: 20px;
+        grid-auto-flow: column;
       }
     </style>
   </head>
   <body>
     <div class="container">
       <div class="title">
-        <p>使った機材のバーコードを</p>
+        <p>使った設備のバーコードを</p>
         <p>バーコードリーダーで読み込んでください</p>
       </div>
       <div class="barcodes">
         <div>
-          機材1:
+          設備01:
           <input type="text" id="barcode1" autofocus />
         </div>
         <div>
-          機材2:
+          設備02:
           <input type="text" id="barcode2" />
         </div>
         <div>
-          機材3:
+          設備03:
           <input type="text" id="barcode3" />
         </div>
         <div>
-          機材4:
+          設備04:
           <input type="text" id="barcode4" />
         </div>
         <div>
-          機材5:
+          設備05:
           <input type="text" id="barcode5" />
+        </div>
+        <div>
+          設備06:
+          <input type="text" id="barcode6" />
+        </div>
+        <div>
+          設備07:
+          <input type="text" id="barcode7" />
+        </div>
+        <div>
+          設備08:
+          <input type="text" id="barcode8" />
+        </div>
+        <div>
+          設備09:
+          <input type="text" id="barcode9" />
+        </div>
+        <div>
+          設備10:
+          <input type="text" id="barcode10" />
         </div>
       </div>
       <div>
-        <a href="./submitted.html" id="next-button">次へ進む</a>
+        <a href="./submitted.html" id="next-button" class="button text-black"
+          >次へ進む</a
+        >
       </div>
     </div>
 
@@ -94,6 +117,21 @@
         nextInput(e, 5);
       });
       document.getElementById("barcode5").addEventListener("keyup", (e) => {
+        nextInput(e, 6);
+      });
+      document.getElementById("barcode6").addEventListener("keyup", (e) => {
+        nextInput(e, 7);
+      });
+      document.getElementById("barcode7").addEventListener("keyup", (e) => {
+        nextInput(e, 8);
+      });
+      document.getElementById("barcode8").addEventListener("keyup", (e) => {
+        nextInput(e, 9);
+      });
+      document.getElementById("barcode9").addEventListener("keyup", (e) => {
+        nextInput(e, 10);
+      });
+      document.getElementById("barcode10").addEventListener("keyup", (e) => {
         nextButton.click();
       });
     </script>

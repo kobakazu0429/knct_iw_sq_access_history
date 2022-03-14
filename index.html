@@ -29,21 +29,6 @@
         flex-direction: column;
       }
 
-      .button {
-        background-color: #ffffff;
-        font-size: 80px;
-        color: var(--text-color);
-        text-decoration: none;
-        border: 3px solid var(--text-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .button:hover {
-        cursor: pointer;
-      }
-
       .enter {
         grid-area: 2 / 1 / 3 / 2;
       }
@@ -59,8 +44,18 @@
         <p>スクエア入退室記録</p>
         <p>2022/02/10(木) - 現在10人います</p>
       </div>
-      <a href="/enter/index.html" class="button enter">入室</a>
-      <a href="/leave/index.html" class="button leave">退室</a>
+      <a
+        href="./enter/index.html"
+        class="button border-3 text-lg text-black enter"
+      >
+        入室
+      </a>
+      <a
+        href="./leave/index.html"
+        class="button border-3 text-lg text-black leave"
+      >
+        退室
+      </a>
     </div>
   </body>
 </html>

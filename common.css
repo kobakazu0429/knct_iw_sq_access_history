@@ -1,5 +1,12 @@
 :root {
   --text-color: #403f53;
+  --link-color: #0000ee;
+}
+
+*,
+*::before,
+*::after {
+  user-select: none;
 }
 
 body {
@@ -9,17 +16,46 @@ body {
   color: var(--text-color);
 }
 
+a {
+  text-decoration: none;
+}
+a:link {
+  color: var(--link-color);
+}
+a:visited {
+  color: var(--link-color);
+}
+a:hover {
+  color: var(--link-color);
+}
+a:active {
+  color: var(--link-color);
+}
+
 .button {
   background-color: #ffffff;
-  font-size: 80px;
   color: var(--text-color);
   text-decoration: none;
-  border: 3px solid var(--text-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid var(--text-color);
+  padding: 5px 40px;
 }
 
 .button:hover {
   cursor: pointer;
+}
+
+.border-3 {
+  border: 3px solid var(--text-color);
+}
+
+.text-lg {
+  font-size: 80px;
+}
+
+.text-md {
+  font-size: 50px;
+}
+
+.text-black {
+  color: var(--text-color)!important;
 }

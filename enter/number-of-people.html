@@ -34,8 +34,8 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(4, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
         font-size: 30px;
       }
 
@@ -84,24 +84,11 @@
       }
 
       .button_wrapper {
+        width: 1000px;
         display: flex;
         align-items: center;
-        justify-content: center;
-      }
-
-      .button1 {
-        background-color: #ffffff;
-        font-size: 50px;
-        color: var(--text-color);
-        text-decoration: none;
-        border: 3px solid var(--text-color);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .button1:hover {
-        cursor: pointer;
+        justify-content: space-between;
+        margin: 0 auto;
       }
     </style>
   </head>
@@ -125,7 +112,10 @@
         <button class="number clear" onclick="clearNumber()">clear</button>
       </div>
       <div class="button_wrapper">
-        <button class="button1" onclick="submit()">送信する</button>
+        <a class="button text-md text-black" href="../index.html">
+          トップへ戻る
+        </a>
+        <button class="button text-md" onclick="submit()">送信する</button>
       </div>
     </div>
     <script>
@@ -139,8 +129,25 @@
         numberOfPeople.value = "";
       }
 
-      function submit() {
-        location.href = "/enter/submitted.html";
+      async function submit() {
+        const url =
+          "https://script.google.com/macros/s/AKfycbzbOaEC4I8Y6Sas38dbHx5Pwn-UsxDI2aRLwS4ouzGAGIJ5oaY5-8V4KD3ulQUknSiI/exec";
+
+        const data = {
+          no: numberOfPeople.value,
+          // name: name.value,
+          time: Date.now(),
+        };
+
+        console.log(data);
+
+        const res = await fetch(url, {
+          method: "post",
+          body: JSON.stringify(data),
+        });
+
+        console.log(await res.json());
+        location.href = "./submitted.html";
       }
     </script>
   </body>
