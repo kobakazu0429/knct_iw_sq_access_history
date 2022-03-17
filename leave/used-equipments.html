@@ -97,83 +97,89 @@
       </div>
     </div>
 
-    <script type="module">
-      import { getStudentNo } from "../storage.js";
-      import { detailDateFormatter } from "../utils.js";
-      import { GAS_URL } from "../settings.js";
+    <script src="../kvs-indexeddb-2.1.1.js"></script>
+    <script src="../settings.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../storage.js"></script>
+    <script>
+      (async () => {
+        await initStorage();
 
-      const nextButton = document.getElementById("next-button");
+        const nextButton = document.getElementById("next-button");
 
-      const nextInput = (e, i) => {
-        if (e.key === "Enter") {
-          document.getElementById(`barcode${i}`).focus();
-        }
-      };
-
-      document.getElementById("barcode1").addEventListener("keyup", (e) => {
-        nextInput(e, 2);
-      });
-      document.getElementById("barcode2").addEventListener("keyup", (e) => {
-        nextInput(e, 3);
-      });
-      document.getElementById("barcode3").addEventListener("keyup", (e) => {
-        nextInput(e, 4);
-      });
-      document.getElementById("barcode4").addEventListener("keyup", (e) => {
-        nextInput(e, 5);
-      });
-      document.getElementById("barcode5").addEventListener("keyup", (e) => {
-        nextInput(e, 6);
-      });
-      document.getElementById("barcode6").addEventListener("keyup", (e) => {
-        nextInput(e, 7);
-      });
-      document.getElementById("barcode7").addEventListener("keyup", (e) => {
-        nextInput(e, 8);
-      });
-      document.getElementById("barcode8").addEventListener("keyup", (e) => {
-        nextInput(e, 9);
-      });
-      document.getElementById("barcode9").addEventListener("keyup", (e) => {
-        nextInput(e, 10);
-      });
-      document.getElementById("barcode10").addEventListener("keyup", (e) => {
-        // nextButton.click();
-      });
-
-      document.getElementById("submit").addEventListener("click", async (e) => {
-        document
-          .querySelector("div.loading-container")
-          .classList.remove("hidden");
-
-        const s = new Set();
-        for (let i = 1; i <= 10; i++) {
-          let { value } = document.getElementById(`barcode${i}`);
-          value = value.trim();
-          if (!value || value == "") continue;
-          s.add(value);
-        }
-
-        const studentNo = await getStudentNo();
-
-        const data = {
-          type: "leave",
-          studentNo,
-          equipments: Array.from(s.values()).join(", "),
-          time: detailDateFormatter.format(new Date()),
+        const nextInput = (e, i) => {
+          if (e.key === "Enter") {
+            document.getElementById(`barcode${i}`).focus();
+          }
         };
 
-        console.log(data);
-
-        const res = await fetch(GAS_URL, {
-          method: "post",
-          body: JSON.stringify(data),
+        document.getElementById("barcode1").addEventListener("keyup", (e) => {
+          nextInput(e, 2);
+        });
+        document.getElementById("barcode2").addEventListener("keyup", (e) => {
+          nextInput(e, 3);
+        });
+        document.getElementById("barcode3").addEventListener("keyup", (e) => {
+          nextInput(e, 4);
+        });
+        document.getElementById("barcode4").addEventListener("keyup", (e) => {
+          nextInput(e, 5);
+        });
+        document.getElementById("barcode5").addEventListener("keyup", (e) => {
+          nextInput(e, 6);
+        });
+        document.getElementById("barcode6").addEventListener("keyup", (e) => {
+          nextInput(e, 7);
+        });
+        document.getElementById("barcode7").addEventListener("keyup", (e) => {
+          nextInput(e, 8);
+        });
+        document.getElementById("barcode8").addEventListener("keyup", (e) => {
+          nextInput(e, 9);
+        });
+        document.getElementById("barcode9").addEventListener("keyup", (e) => {
+          nextInput(e, 10);
+        });
+        document.getElementById("barcode10").addEventListener("keyup", (e) => {
+          // nextButton.click();
         });
 
-        console.log(await res.json());
+        document
+          .getElementById("submit")
+          .addEventListener("click", async (e) => {
+            document
+              .querySelector("div.loading-container")
+              .classList.remove("hidden");
 
-        window.location = "./submitted.html";
-      });
+            const s = new Set();
+            for (let i = 1; i <= 10; i++) {
+              let { value } = document.getElementById(`barcode${i}`);
+              value = value.trim();
+              if (!value || value == "") continue;
+              s.add(value);
+            }
+
+            const studentNo = await getStudentNo();
+
+            const data = {
+              type: "leave",
+              studentNo,
+              equipments: Array.from(s.values()).join(", "),
+              time: detailDateFormatter.format(new Date()),
+            };
+
+            console.log(data);
+
+            const res = await fetch(GAS_URL, {
+              method: "post",
+              body: JSON.stringify(data),
+            });
+
+            console.log(await res.json());
+
+            window.location = "./submitted.html";
+          });
+      })();
     </script>
   </body>
 </html>

@@ -133,39 +133,46 @@
         numberOfPeople.value = "";
       }
     </script>
-    <script type="module">
-      import { addStudentsCount, getStudentNo } from "../storage.js";
-      import { detailDateFormatter } from "../utils.js";
-      import { GAS_URL } from "../settings.js";
-
-      document.getElementById("submit").addEventListener("click", async () => {
-        if (numberOfPeople.value === "" || numberOfPeople.value === "0") return;
+    <script src="../kvs-indexeddb-2.1.1.js"></script>
+    <script src="../settings.js"></script>
+    <script src="../utils.js"></script>
+    <script src="../storage.js"></script>
+    <script>
+      (async () => {
+        await initStorage();
 
         document
-          .querySelector("div.loading-container")
-          .classList.remove("hidden");
+          .getElementById("submit")
+          .addEventListener("click", async () => {
+            if (numberOfPeople.value === "" || numberOfPeople.value === "0")
+              return;
 
-        await addStudentsCount(Number(numberOfPeople.value));
-        const studentNo = await getStudentNo();
+            document
+              .querySelector("div.loading-container")
+              .classList.remove("hidden");
 
-        const data = {
-          type: "enter",
-          studentNo,
-          numberOfPeople: numberOfPeople.value,
-          time: detailDateFormatter.format(new Date()),
-        };
+            await addStudentsCount(Number(numberOfPeople.value));
+            const studentNo = await getStudentNo();
 
-        console.log(data);
+            const data = {
+              type: "enter",
+              studentNo,
+              numberOfPeople: numberOfPeople.value,
+              time: detailDateFormatter.format(new Date()),
+            };
 
-        const res = await fetch(GAS_URL, {
-          method: "post",
-          body: JSON.stringify(data),
-        });
+            console.log(data);
 
-        console.log(await res.json());
+            const res = await fetch(GAS_URL, {
+              method: "post",
+              body: JSON.stringify(data),
+            });
 
-        window.location = "./submitted.html";
-      });
+            console.log(await res.json());
+
+            window.location = "./submitted.html";
+          });
+      })();
     </script>
   </body>
 </html>

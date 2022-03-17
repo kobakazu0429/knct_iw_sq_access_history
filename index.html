@@ -59,29 +59,26 @@
         退室
       </a>
     </div>
-    <script type="module">
-      import {
-        getStudentsCount,
-        deleteStudentNo,
-        deleteStudentsCount,
-        getLastRun,
-        updateLastRun,
-      } from "./storage.js";
-      import { simpleDateFormatter } from "./utils.js";
+    <script src="./kvs-indexeddb-2.1.1.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./storage.js"></script>
+    <script>
+      (async () => {
+        await initStorage();
+        await deleteStudentNo();
 
-      await deleteStudentNo();
+        const isFirst =
+          (await getLastRun()) !== simpleDateFormatter.format(new Date());
 
-      const isFirst =
-        (await getLastRun()) !== simpleDateFormatter.format(new Date());
+        if (isFirst) {
+          await deleteStudentsCount();
+          await updateLastRun();
+        }
 
-      if (isFirst) {
-        await deleteStudentsCount();
-        await updateLastRun();
-      }
-
-      const currentStudentsCount = await getStudentsCount();
-      document.getElementById("current-students-count").textContent =
-        currentStudentsCount;
+        const currentStudentsCount = await getStudentsCount();
+        document.getElementById("current-students-count").textContent =
+          currentStudentsCount;
+      })();
     </script>
   </body>
 </html>

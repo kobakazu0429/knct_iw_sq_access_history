@@ -1,10 +1,10 @@
-export const verifyStudentNo = (studentNo) => {
+const verifyStudentNo = (studentNo) => {
   // 学生証のバーコードは学生番号7桁+0
   return /^\d{7}0$/.test(studentNo);
 };
 
 // 2022/01/01 01:01:01
-export const detailDateFormatter = new Intl.DateTimeFormat(
+const detailDateFormatter = new Intl.DateTimeFormat(
   'ja-JP',
   {
     year: 'numeric',
@@ -17,7 +17,7 @@ export const detailDateFormatter = new Intl.DateTimeFormat(
 );
 
 // 2022/01/01
-export const simpleDateFormatter = new Intl.DateTimeFormat(
+const simpleDateFormatter = new Intl.DateTimeFormat(
   'ja-JP',
   {
     year: 'numeric',
