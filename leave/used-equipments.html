@@ -22,10 +22,6 @@
         font-size: 40px;
       }
 
-      a {
-        text-decoration: none;
-      }
-
       .title {
         font-size: 60px;
       }
@@ -37,6 +33,11 @@
         grid-column-gap: 0px;
         grid-row-gap: 20px;
         grid-auto-flow: column;
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-around;
       }
     </style>
   </head>
@@ -92,7 +93,10 @@
           <input type="text" id="barcode10" />
         </div>
       </div>
-      <div>
+      <div class="buttons">
+        <a href="../index.html" class="button text-md text-black"
+          >トップへ戻る</a
+        >
         <button class="button text-md" id="submit">送信する</button>
       </div>
     </div>

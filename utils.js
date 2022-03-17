@@ -25,3 +25,11 @@ const simpleDateFormatter = new Intl.DateTimeFormat(
     day: '2-digit'
   }
 );
+
+const simpleTimeFormatter = new Intl.DateTimeFormat(
+  'ja-JP',
+  {
+    hour: '2-digit',
+    minute: '2-digit',
+  }
+);

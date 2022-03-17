@@ -42,19 +42,17 @@
     <div class="container">
       <div class="info">
         <p>スクエア入退室記録</p>
-        <p>
-          2022/02/10(木) - 現在<span id="current-students-count"></span>人います
-        </p>
+        <p>2022/02/10(木) - <span id="clock"></span></p>
       </div>
       <a
         href="./enter/index.html"
-        class="button border-3 text-lg text-black enter"
+        class="button border-3 text-lg text-black center enter"
       >
         入室
       </a>
       <a
         href="./leave/index.html"
-        class="button border-3 text-lg text-black leave"
+        class="button border-3 text-lg text-black center leave"
       >
         退室
       </a>
@@ -78,6 +76,13 @@
         // const currentStudentsCount = await getStudentsCount();
         // document.getElementById("current-students-count").textContent =
         //   currentStudentsCount;
+        const updateClock = () => {
+          const now = simpleTimeFormatter.format(Date.now());
+          document.getElementById("clock").textContent = now;
+        };
+        updateClock();
+
+        setInterval(updateClock, 1000);
       })();
     </script>
   </body>
