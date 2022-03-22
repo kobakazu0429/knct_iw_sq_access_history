@@ -27,6 +27,8 @@
 ├── storage.js "kvs-indexeddb-2.1.1.js"を使いやすくするための関数をまとめたファイル
 ├── utils.js 便利関数などをまとめたファイル
 
+├── code.gs Google Apps Script用のファイル、これでスプレッドシートに書き込んでいる
+
 └── start.bat 入退室システム用のPCのスタートアップに置くファイル、詳細は後述
 ```
 
