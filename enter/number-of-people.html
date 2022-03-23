@@ -11,7 +11,7 @@
       .container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr) 3fr 1fr;
+        grid-template-rows: 0.7fr repeat(2, 1fr) 3fr 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
         min-width: 100%;
@@ -24,6 +24,10 @@
 
       .title {
         font-size: 60px;
+      }
+
+      .sub-title {
+        font-size: 40px;
       }
 
       .number_input {
@@ -98,6 +102,7 @@
     </div>
 
     <div class="container">
+      <div class="sub-title">学生番号：<span id="student-no"></span></div>
       <div class="title">本日スクエアを利用する人数を入力してください</div>
       <div class="number_input">
         <input type="text" id="number-of-people" autofocus />
@@ -141,6 +146,10 @@
       (async () => {
         await initStorage();
 
+        const studentNo = await getStudentNo();
+        const studentNoEl = document.getElementById("student-no");
+        studentNoEl.textContent = studentNo;
+
         document
           .getElementById("submit")
           .addEventListener("click", async () => {
@@ -152,7 +161,6 @@
               .classList.remove("hidden");
 
             // await addStudentsCount(Number(numberOfPeople.value));
-            const studentNo = await getStudentNo();
 
             const data = {
               type: "enter",

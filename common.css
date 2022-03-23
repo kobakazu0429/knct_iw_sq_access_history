@@ -32,6 +32,12 @@ a:active {
   color: var(--link-color);
 }
 
+input[type="reset"] {
+  background: none;
+  border-color: rgb(118, 118, 118);
+  border-width: 1px;
+}
+
 .button {
   background-color: #ffffff;
   color: var(--text-color);

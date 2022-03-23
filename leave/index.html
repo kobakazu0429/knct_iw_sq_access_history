@@ -37,7 +37,10 @@
         <p>バーコードリーダーで読み込んでください</p>
         <p>入室時に使った学生証と同じにしてください。</p>
       </div>
-      <div><input type="text" id="student-no" autofocus /></div>
+      <div>
+        <input type="text" id="student-no" autofocus />
+        <button id="clear" class="button text-black">削除</button>
+      </div>
       <div class="buttons">
         <a href="../index.html" class="button text-black">トップへ戻る</a>
         <button id="next-button" class="button text-black">次へ進む</button>
@@ -53,6 +56,12 @@
 
         const studentNo = document.getElementById("student-no");
         const nextButton = document.getElementById("next-button");
+
+        const clear = document.getElementById("clear");
+
+        clear.addEventListener("click", () => {
+          studentNo.value = "";
+        });
 
         const stored = async () => {
           if (!verifyStudentNo(studentNo.value)) return;

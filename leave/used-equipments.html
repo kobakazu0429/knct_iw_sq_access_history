@@ -11,7 +11,7 @@
       .container {
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 3fr 1fr;
+        grid-template-rows: 0.7fr 1fr 2fr 1fr;
         grid-column-gap: 0px;
         grid-row-gap: 0px;
         min-width: 100%;
@@ -26,7 +26,11 @@
         font-size: 60px;
       }
 
-      .barcodes {
+      .sub-title {
+        font-size: 40px;
+      }
+
+      .equipments {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(5, 1fr);
@@ -47,56 +51,58 @@
     </div>
 
     <div class="container">
+      <div class="sub-title">学生番号：<span id="student-no"></span></div>
       <div class="title">
         <p>使った設備のバーコードを</p>
         <p>バーコードリーダーで読み込んでください</p>
       </div>
-      <div class="barcodes">
+      <div class="equipments">
         <div>
           設備01:
-          <input type="text" id="barcode1" autofocus />
+          <input type="text" id="equipment1" autofocus />
         </div>
         <div>
           設備02:
-          <input type="text" id="barcode2" />
+          <input type="text" id="equipment2" />
         </div>
         <div>
           設備03:
-          <input type="text" id="barcode3" />
+          <input type="text" id="equipment3" />
         </div>
         <div>
           設備04:
-          <input type="text" id="barcode4" />
+          <input type="text" id="equipment4" />
         </div>
         <div>
           設備05:
-          <input type="text" id="barcode5" />
+          <input type="text" id="equipment5" />
         </div>
         <div>
           設備06:
-          <input type="text" id="barcode6" />
+          <input type="text" id="equipment6" />
         </div>
         <div>
           設備07:
-          <input type="text" id="barcode7" />
+          <input type="text" id="equipment7" />
         </div>
         <div>
           設備08:
-          <input type="text" id="barcode8" />
+          <input type="text" id="equipment8" />
         </div>
         <div>
           設備09:
-          <input type="text" id="barcode9" />
+          <input type="text" id="equipment9" />
         </div>
         <div>
           設備10:
-          <input type="text" id="barcode10" />
+          <input type="text" id="equipment10" />
         </div>
       </div>
       <div class="buttons">
         <a href="../index.html" class="button text-md text-black"
           >トップへ戻る</a
         >
+        <button class="button text-md" id="clear">削除する</button>
         <button class="button text-md" id="submit">送信する</button>
       </div>
     </div>
@@ -113,40 +119,50 @@
 
         const nextInput = (e, i) => {
           if (e.key === "Enter") {
-            document.getElementById(`barcode${i}`).focus();
+            document.getElementById(`equipment${i}`).focus();
           }
         };
 
-        document.getElementById("barcode1").addEventListener("keyup", (e) => {
+        document.getElementById("equipment1").addEventListener("keyup", (e) => {
           nextInput(e, 2);
         });
-        document.getElementById("barcode2").addEventListener("keyup", (e) => {
+        document.getElementById("equipment2").addEventListener("keyup", (e) => {
           nextInput(e, 3);
         });
-        document.getElementById("barcode3").addEventListener("keyup", (e) => {
+        document.getElementById("equipment3").addEventListener("keyup", (e) => {
           nextInput(e, 4);
         });
-        document.getElementById("barcode4").addEventListener("keyup", (e) => {
+        document.getElementById("equipment4").addEventListener("keyup", (e) => {
           nextInput(e, 5);
         });
-        document.getElementById("barcode5").addEventListener("keyup", (e) => {
+        document.getElementById("equipment5").addEventListener("keyup", (e) => {
           nextInput(e, 6);
         });
-        document.getElementById("barcode6").addEventListener("keyup", (e) => {
+        document.getElementById("equipment6").addEventListener("keyup", (e) => {
           nextInput(e, 7);
         });
-        document.getElementById("barcode7").addEventListener("keyup", (e) => {
+        document.getElementById("equipment7").addEventListener("keyup", (e) => {
           nextInput(e, 8);
         });
-        document.getElementById("barcode8").addEventListener("keyup", (e) => {
+        document.getElementById("equipment8").addEventListener("keyup", (e) => {
           nextInput(e, 9);
         });
-        document.getElementById("barcode9").addEventListener("keyup", (e) => {
+        document.getElementById("equipment9").addEventListener("keyup", (e) => {
           nextInput(e, 10);
         });
-        document.getElementById("barcode10").addEventListener("keyup", (e) => {
-          // nextButton.click();
-        });
+        document
+          .getElementById("equipment10")
+          .addEventListener("keyup", (e) => {
+            // nextButton.click();
+          });
+
+        document
+          .getElementById("clear")
+          .addEventListener("click", async (e) => {
+            for (let i = 1; i <= 10; i++) {
+              document.getElementById(`equipment${i}`).value = "";
+            }
+          });
 
         document
           .getElementById("submit")
@@ -157,7 +173,7 @@
 
             const s = new Set();
             for (let i = 1; i <= 10; i++) {
-              let { value } = document.getElementById(`barcode${i}`);
+              let { value } = document.getElementById(`equipment${i}`);
               value = value.trim();
               if (!value || value == "") continue;
               s.add(value);
