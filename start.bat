@@ -1,6 +1,6 @@
 @echo off
 
-start /min /b "" "C:\Users\IW\Desktop\BarcodeYomirou\バーコード読み郎\barcode_yomio.exe"
+start /min /b "" "C:\Users\IW\Desktop\BarcodeYomirou\barcode_yomio.exe"
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk "file:///C:/Users/IW/Desktop/iwsq/index.html"
 
 set h=%time:~0,2%

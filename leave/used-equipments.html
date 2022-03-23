@@ -115,6 +115,10 @@
       (async () => {
         await initStorage();
 
+        const studentNo = await getStudentNo();
+        const studentNoEl = document.getElementById("student-no");
+        studentNoEl.textContent = studentNo;
+
         const nextButton = document.getElementById("next-button");
 
         const nextInput = (e, i) => {
@@ -178,8 +182,6 @@
               if (!value || value == "") continue;
               s.add(value);
             }
-
-            const studentNo = await getStudentNo();
 
             const data = {
               type: "leave",
