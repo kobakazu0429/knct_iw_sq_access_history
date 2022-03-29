@@ -42,7 +42,7 @@
     <div class="container">
       <div class="info">
         <p>スクエア入退室記録</p>
-        <p>2022/02/10(木) - <span id="clock"></span></p>
+        <p id="time"></p>
       </div>
       <a
         href="./enter/index.html"
@@ -78,7 +78,7 @@
         //   currentStudentsCount;
         const updateClock = () => {
           const now = simpleTimeFormatter.format(Date.now());
-          document.getElementById("clock").textContent = now;
+          document.getElementById("time").textContent = now;
         };
         updateClock();
 

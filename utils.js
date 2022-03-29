@@ -29,6 +29,10 @@ const simpleDateFormatter = new Intl.DateTimeFormat(
 const simpleTimeFormatter = new Intl.DateTimeFormat(
   'ja-JP',
   {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: "narrow",
     hour: '2-digit',
     minute: '2-digit',
   }
