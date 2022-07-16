@@ -65,7 +65,7 @@
         });
 
         const stored = async () => {
-          if (!verifyStudentNo(studentNo.value)) return;
+          if (!verifyId(studentNo.value)) return;
           await setStudentNo(studentNo.value);
           window.location = "./used-equipments.html";
         };
