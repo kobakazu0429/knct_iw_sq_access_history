@@ -64,6 +64,10 @@
           studentNo.focus();
         });
 
+        document.body.addEventListener("click", () => {
+          studentNo.focus();
+        });
+
         const stored = async () => {
           if (!verifyId(studentNo.value)) return;
           await setStudentNo(studentNo.value);
