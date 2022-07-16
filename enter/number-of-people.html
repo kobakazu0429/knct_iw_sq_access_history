@@ -153,8 +153,16 @@
         document
           .getElementById("submit")
           .addEventListener("click", async () => {
-            if (numberOfPeople.value === "" || numberOfPeople.value === "0")
+            if (numberOfPeople.value === "" || numberOfPeople.value === "0") {
               return;
+            }
+
+            const MAX_NUMBER_OF_PEOPLE = 1000;
+            if (MAX_NUMBER_OF_PEOPLE < Number(numberOfPeople.value)) {
+              window.alert("人数が多すぎます。確認してください。");
+              clearNumber();
+              return;
+            }
 
             document
               .querySelector("div.loading-container")
