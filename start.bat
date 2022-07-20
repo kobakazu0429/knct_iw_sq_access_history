@@ -1,7 +1,8 @@
 @echo off
 
 start /min /b "" "C:\Users\IW\Desktop\BarcodeYomirou\barcode_yomio.exe"
-"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk "file:///C:/Users/IW/Desktop/iwsq/index.html"
+@REM "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk "file:///C:/Users/IW/Desktop/iwsq/index.html"
+"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --kiosk "https://kobakazu0429.github.io/knct_iw_sq_access_history/"
 
 set h=%time:~0,2%
 set m=%time:~3,2%
